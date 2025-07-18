@@ -1,75 +1,36 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
+## Установка
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+$ yarn install # Установить зависимости
+$ yarn dev # Запуск локального сервера
 ```
 
-## Development Server
+## Описание
 
-Start the development server on `http://localhost:3000`:
+Мультиязычность реализована с помощью библиотеки [i18next](https://www.i18next.com/). Для её работы написан плагин в `localization.plugin.ts`.
 
-```bash
-# npm
-npm run dev
+Сохранение настроек языка происходит путём установки cookie, синхронизация клиентской и серверной части также через неё. Также язык влияет на аттрибуты `lang` и `rtl` (актуально для языков вроде арабского или иврита).
 
-# pnpm
-pnpm dev
+Для перевода товаров, а также адаптации их цен, подразумевается, что нужные данные заполняются через админку, поэтому их изменение реализовано через обращение к определенным ключам объекта.
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```ts
+{
+  description: {
+    en: ...
+    ru: ...
+    ar: ...
+  },
+  price: {
+    usd: ...
+    rub: ...
+    aed: ...
+  }
+}
 ```
 
-## Production
+## Полезные ссылки
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [Документация i18next](https://www.i18next.com/overview/supported-frameworks)
+- [Список поддерживаемых языков и фреймворков](https://www.i18next.com/overview/supported-frameworks)
+- [Список плагинов и утилит](https://www.i18next.com/overview/plugins-and-utils)
+- [Ссылка на презентацию](https://docs.google.com/presentation/d/11cmBW3sPbydTORDG79FZ94516S5HyG7E1zzrbdPiW8s/edit?usp=sharing)
