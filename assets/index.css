@@ -1,0 +1,26 @@
+:root {
+  --background: #f7f7f7;
+  --background-fill: #ffffff;
+  --background-secondary: #ebebeb;
+  --primary: #23db98;
+  --accent: #c519ce;
+
+  --text: #000000;
+  --text-alt: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+.link {
+  color: var(--text);
+}
+
+.link:hover {
+  color: var(--accent);
+}
