@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useTranslation } from "i18next-vue";
+import { useLocale } from "~/composables/useLocale";
 import type { Good, CartRecord } from "@/types/catalog";
 import type { Currency } from "@/types/common";
 import {
@@ -9,12 +10,12 @@ import {
 } from "@/utils/localize-helpers";
 
 const { i18next, t } = useTranslation();
-const language = useCookie("language");
+const locale = useLocale();
 
 useHead({
   htmlAttrs: {
-    lang: () => language.value,
-    dir: () => (language.value === "ar" ? "rtl" : "ltr"),
+    lang: () => locale.language.value,
+    dir: () => locale.langDir.value,
   },
 });
 
@@ -26,7 +27,7 @@ const cart = computed(() => {
   for (const [good, count] of Object.entries(goods.value)) {
     const _good: Good = JSON.parse(good);
     const currency = getCurrencyByLocale(
-      language.value ?? ""
+      locale.language.value ?? ""
     )?.toLowerCase() as Currency;
 
     if (!currency) return 0;
@@ -43,15 +44,6 @@ const addGood = (record: CartRecord) => {
   } else {
     goods.value[record.good] = record.count;
   }
-};
-
-const changeLanguage = (language: string) => {
-  i18next.changeLanguage(language);
-
-  const lang = useCookie("language", {
-    maxAge: 60 * 60 * 24 * 365,
-  });
-  lang.value = language;
 };
 </script>
 
@@ -86,25 +78,25 @@ const changeLanguage = (language: string) => {
     <footer class="footer">
       <button
         class="footer__button"
-        :class="{ active: language === 'en' }"
+        :class="{ active: locale.language.value === 'en' }"
         type="button"
-        @click="changeLanguage('en')"
+        @click="locale.changeLanguage('en')"
       >
         English
       </button>
       <button
         class="footer__button"
-        :class="{ active: language === 'ru' }"
+        :class="{ active: locale.language.value === 'ru' }"
         type="button"
-        @click="changeLanguage('ru')"
+        @click="locale.changeLanguage('ru')"
       >
         Русский
       </button>
       <button
         class="footer__button"
-        :class="{ active: language === 'ar' }"
+        :class="{ active: locale.language.value === 'ar' }"
         type="button"
-        @click="changeLanguage('ar')"
+        @click="locale.changeLanguage('ar')"
       >
         عربي
       </button>
