@@ -113,7 +113,7 @@ const addToCart = (good: Good | null, count: number) => {
 }
 
 .good-add-modal__body {
-  width: 500px;
+  width: 600px;
   padding: 24px;
   background-color: var(--background-fill);
 }

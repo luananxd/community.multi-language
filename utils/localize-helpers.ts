@@ -1,5 +1,4 @@
 import i18next from "i18next";
-import type { Locale } from "~/types/common";
 
 export const getCurrencyByLocale = (locale: string) => {
   if (locale === "en") return "USD";

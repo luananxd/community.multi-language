@@ -13,10 +13,6 @@ useHead({
   title: () => t("main:pageTitle"),
 });
 
-const props = defineProps<{
-  cart: number;
-}>();
-
 const emit = defineEmits<{
   (e: "update:cart", value: CartRecord): void;
 }>();
